@@ -1,15 +1,22 @@
 require 'sinatra'
 require 'haml'
 
+class Lola
+  def age
+    # TODO: make this dynamic
+    13
+  end
+
+  def image_filename
+    "/lola.JPG"
+  end
+end
+
 get '/' do
-  "Hello World"
+  haml :welcome, layout: :application
 end
 
-get '/gaby' do
-  "Gaby"
-end
-
-get '/hello/:name' do
-  @name = params[:name]
-  haml :hello, layout: :application
+get '/about' do
+  @lola = Lola.new
+  haml :about, layout: :application
 end
